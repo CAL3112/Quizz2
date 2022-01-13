@@ -35,8 +35,9 @@ class Quizz extends React.Component {
         this.setState({numero_question: this.state.numero_question + 1})
         } else {
           const db = SQLite.openDatabase("database.db");
-          db.transaction(tx => {tx.executeSql("insert into user (score) values (?)", [this.state.score]);});
+          db.transaction(tx => {tx.executeSql("insert into user (pseudo, score) values (?,?)", [pseudo,this.state.score]);});
           //Alert.alert("C'est terminé votre score est de : "+this.state.score+" / 3")
+
           navigate('Resultats')
         }
    }

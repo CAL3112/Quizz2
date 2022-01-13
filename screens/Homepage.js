@@ -15,9 +15,7 @@ class Homepage extends React.Component {
     validation_pseudo(){
       const db = SQLite.openDatabase("database.db");
       db.transaction(tx => {tx.executeSql("create table if not exists user (id integer primary key not null, pseudo text, score integer);");});
-      db.transaction(tx => {tx.executeSql("insert into user (pseudo) values (?)", [this.state.pseudo]);});
-      db.transaction(tx => {tx.executeSql("select * from user",[], (_, { rows}) =>console.log(rows))})
-      this.props.navigation.navigate('Quizz', {name: this.state.nom})//,{nom: this.state.nom, email: this.state.email}
+      this.props.navigation.navigate('Quizz', {pseudo: this.state.pseudo})//,{nom: this.state.nom, email: this.state.email}
     }
 
     render(){
